@@ -1,7 +1,9 @@
 package com.web.apirelaciones.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -27,16 +29,6 @@ public class Canciones {
     private Genero genero;
 
     public Canciones() {
-    }
-
-    public Canciones(String titulo, Date fechaestreno, String duracion) {
-        this.titulo = titulo;
-        this.fechaestreno = fechaestreno;
-        this.duracion = duracion;
-    }
-
-    public String getTitulo() {
-        return titulo;
     }
 
     public void setTitulo(String titulo) {
@@ -74,4 +66,5 @@ public class Canciones {
     public void setGenero(Genero genero) {
         this.genero = genero;
     }
+
 }

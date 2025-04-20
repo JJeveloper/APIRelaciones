@@ -11,18 +11,20 @@ public class Genero {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idgenero")
     private int idgenero;
 
     private String nombre;
 
-    @OneToMany(mappedBy = "genero", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "genero", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     List<Canciones> canciones = new ArrayList<>();
 
     public Genero() {
     }
 
-    public Genero(String nombre) {
+    public Genero(String nombre, List<Canciones> canciones) {
         this.nombre = nombre;
+        this.canciones = canciones;
     }
 
     public int getIdgenero() {

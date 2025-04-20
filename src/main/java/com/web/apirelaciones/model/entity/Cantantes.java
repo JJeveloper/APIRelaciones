@@ -1,5 +1,6 @@
 package com.web.apirelaciones.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -21,6 +22,11 @@ public class Cantantes {
     public Cantantes() {
     }
 
+    public Cantantes(int idcantante, String cantante) {
+        this.idcantante = idcantante;
+        this.cantante = cantante;
+    }
+
     public int getIdcantante() {
         return idcantante;
     }
@@ -29,9 +35,7 @@ public class Cantantes {
         this.idcantante = idcantante;
     }
 
-    public String getCantante() {
-        return cantante;
-    }
+
 
     public void setCantante(String cantante) {
         this.cantante = cantante;
