@@ -1,31 +1,21 @@
-package com.web.apirelaciones.model.entity;
+package com.web.apirelaciones.model.dto;
 
-import jakarta.persistence.*;
+public class CancionesRelacionDTO {
 
-@Entity
-@Table(name = "canciones")
-public class Canciones {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idcancion;
 
     private String titulo;
 
     private String duracion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idcantante")
-    private Cantantes cantantes;
+    private CantantesDTO cantantes;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idgenero")
-    private Genero genero;
+    private GeneroDTO genero;
 
-    public Canciones() {
+    public CancionesRelacionDTO() {
     }
 
-    public Canciones(String titulo, String duracion, Cantantes cantantes, Genero genero) {
+    public CancionesRelacionDTO(String titulo, String duracion, CantantesDTO cantantes, GeneroDTO genero) {
         this.titulo = titulo;
         this.duracion = duracion;
         this.cantantes = cantantes;
@@ -56,19 +46,19 @@ public class Canciones {
         this.duracion = duracion;
     }
 
-    public Cantantes getCantantes() {
+    public CantantesDTO getCantantes() {
         return cantantes;
     }
 
-    public void setCantantes(Cantantes cantantes) {
+    public void setCantantes(CantantesDTO cantantes) {
         this.cantantes = cantantes;
     }
 
-    public Genero getGenero() {
+    public GeneroDTO getGenero() {
         return genero;
     }
 
-    public void setGenero(Genero genero) {
+    public void setGenero(GeneroDTO genero) {
         this.genero = genero;
     }
 }

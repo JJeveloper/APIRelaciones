@@ -62,14 +62,17 @@ public class GeneroServiceImpl implements GeneroService {
     @Override
     public Optional<GeneroDTO> buscarPorId(Integer id) {
 
-        if(!generoRepository.existsById(id)){
+        Optional<Genero> GeneroOptional = generoRepository.findById(id);
 
+        if(GeneroOptional.isEmpty()){
             System.out.println("Genero no encontrado con ID: " + id);
-            return null;
+            return Optional.empty();
         }
 
-        Optional<Genero> generoPorId = generoRepository.findById(id);
-        return generoPorId.map(generoMapper::GeneroToGeneroDTO);
+        GeneroDTO generoDTO = generoMapper.GeneroToGeneroDTO(GeneroOptional.get());
+        Optional<GeneroDTO> generoDTOOptional = GeneroOptional.ofNullable(generoDTO) ;
+
+        return generoDTOOptional;
 
     }
 

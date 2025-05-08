@@ -1,8 +1,6 @@
 package com.web.apirelaciones.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +12,7 @@ public class Cantantes {
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private int idcantante;
 
-    private String cantante;
+    private String nombre;
 
     @OneToMany(mappedBy = "cantantes", cascade = CascadeType.ALL, fetch =  FetchType.LAZY)
     private List<Canciones> canciones = new ArrayList<>();
@@ -22,9 +20,9 @@ public class Cantantes {
     public Cantantes() {
     }
 
-    public Cantantes(int idcantante, String cantante) {
+    public Cantantes(int idcantante, String nombre) {
         this.idcantante = idcantante;
-        this.cantante = cantante;
+        this.nombre = nombre;
     }
 
     public int getIdcantante() {
@@ -35,10 +33,12 @@ public class Cantantes {
         this.idcantante = idcantante;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
 
-
-    public void setCantante(String cantante) {
-        this.cantante = cantante;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public List<Canciones> getCanciones() {

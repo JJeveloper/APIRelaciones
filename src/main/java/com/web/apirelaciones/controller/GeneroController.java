@@ -14,7 +14,7 @@ import java.util.Optional;
 @RequestMapping("/genero/")
 public class GeneroController {
 
-    private final GeneroService generoServicio;
+    private GeneroService generoServicio;
 
     @Autowired
     public GeneroController(GeneroService generoServicio) {
@@ -28,28 +28,32 @@ public class GeneroController {
     }
 
     @PutMapping("actualizargenero/{id}")
-    public ResponseEntity<GeneroDTO> actualizargenero(@PathVariable("id") Integer id, @RequestBody GeneroDTO generoDTO){
+    public ResponseEntity<GeneroDTO> actualizarGenero(@PathVariable("id") Integer id, @RequestBody GeneroDTO genero){
 
-        GeneroDTO actualizarGenero = generoServicio.actualizarGenero(id,generoDTO);
+        if (genero.getNombre()==null){
+            return ResponseEntity.notFound().build();
+        }
 
-        if (actualizarGenero!=null){
-            return  ResponseEntity.status(HttpStatus.CREATED).body(actualizarGenero);
+        GeneroDTO actualizarGeneroDTO = generoServicio.actualizarGenero(id,genero);
+
+        if (actualizarGeneroDTO!=null){
+            return ResponseEntity.status(HttpStatus.CREATED).body(actualizarGeneroDTO);
         }else{
             return ResponseEntity.notFound().build();
         }
     }
 
-    @GetMapping("todoslosgeneros")
+    @GetMapping("mostrartodoslosgeneros")
     public ResponseEntity<List<GeneroDTO>> mostrarTodosLosGeneros(){
         List<GeneroDTO> todosLosGeneros =  generoServicio.mostrarTodosLosGeneros();
         return ResponseEntity.ok(todosLosGeneros);
     }
 
-    @GetMapping("mostrargenero/{id}")
-    public ResponseEntity<Optional<GeneroDTO>> buscarPorId(@PathVariable("id") Integer id){
+    @GetMapping("mostrargeneroporid/{id}")
+    public ResponseEntity<Optional<GeneroDTO>> mostrarGenero(@PathVariable("id") Integer id){
         Optional<GeneroDTO> generoDTOPorId = generoServicio.buscarPorId(id);
 
-        if (generoDTOPorId == null){
+        if (generoDTOPorId.isEmpty()){
             return ResponseEntity.notFound().build();
         }
 

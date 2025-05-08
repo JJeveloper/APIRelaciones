@@ -5,7 +5,6 @@ package com.web.apirelaciones.model.dto.mapper;
 import com.web.apirelaciones.model.dto.GeneroDTO;
 import com.web.apirelaciones.model.entity.Genero;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
@@ -19,6 +18,8 @@ public interface GeneroMapper {
     Genero GeneroDTOToGenero(GeneroDTO genDTO);
 
     List<GeneroDTO>  generosToGeneroDTOs(List<Genero> generos);
+
+
 
 
 }
