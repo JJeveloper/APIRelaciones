@@ -15,11 +15,11 @@ public class Canciones {
     private String duracion;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idcantante")
+    @JoinColumn(name = "cantantes_idcantante")
     private Cantantes cantantes;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idgenero")
+    @JoinColumn(name = "genero_idgenero")
     private Genero genero;
 
     public Canciones() {
